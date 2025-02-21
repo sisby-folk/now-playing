@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.13+stereomerge
+
+- strip `stereo/` and `mono/` from id paths
+
 ## 1.5.13
 
 - Updated Russian translation (rfin0)
