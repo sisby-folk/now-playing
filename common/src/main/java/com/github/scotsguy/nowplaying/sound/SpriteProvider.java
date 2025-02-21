@@ -32,6 +32,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -93,12 +94,12 @@ public class SpriteProvider {
 //            NowPlaying.LOG.warn("getCustomSprite failed for '{}'", locStr);
             String namespace = location.getNamespace();
             String path = location.getPath();
-            String[] splitPath = path.split("/|mono/|stereo/");
+            String[] splitPath = path.replace("stereo/", "").replace("mono/", "").split("/");
             
-            for (int i = splitPath.length -1; i > 0; i--) {
-                path = path.substring(0, path.length() - (splitPath[i].length() + 1));
+            for (int i = splitPath.length; i > 0; i--) {
+                String reducedPath = String.join("/", Arrays.copyOfRange(splitPath, 0, i));
 //                NowPlaying.LOG.warn("Trying reduced path '{}'", namespace + ":" + path);
-                sprite = getCustomSprite(namespace + ":" + path);
+                sprite = getCustomSprite(namespace + ":" + reducedPath);
                 if (sprite != null) break;
             }
         }
