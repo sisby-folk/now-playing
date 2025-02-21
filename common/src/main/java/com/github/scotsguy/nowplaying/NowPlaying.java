@@ -126,6 +126,10 @@ public class NowPlaying {
     private static Component getTranslatedTitle(String location) {
         String key = Localization.translationKey(location);
         if (!I18n.exists(key)) {
+            String noChannelKey = Localization.translationKey(location.replace("stereo/", "").replace("mono/", ""));
+            if (I18n.exists(noChannelKey)) {
+                return Component.translatable(noChannelKey);
+            }
             String[] splitLocation = location.split("/");
             if (splitLocation.length > 0) {
                 String name = splitLocation[splitLocation.length -1];

@@ -93,7 +93,7 @@ public class SpriteProvider {
 //            NowPlaying.LOG.warn("getCustomSprite failed for '{}'", locStr);
             String namespace = location.getNamespace();
             String path = location.getPath();
-            String[] splitPath = path.split("/");
+            String[] splitPath = path.split("/|mono/|stereo/");
             
             for (int i = splitPath.length -1; i > 0; i--) {
                 path = path.substring(0, path.length() - (splitPath[i].length() + 1));
